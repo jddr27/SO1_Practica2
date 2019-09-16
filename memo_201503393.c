@@ -23,13 +23,6 @@ void __attribute__((weak)) arch_report_meminfo(struct seq_file *m)
 static int meminfo_proc_show(struct seq_file *m, void *v)
 {
         struct sysinfo i;
-        unsigned long committed;
-        unsigned long allowed;
-        long cached;
-        unsigned long pages[NR_LRU_LISTS];
-        int lru;
-
-#define K(x) ((x) << (PAGE_SHIFT - 10))
         si_meminfo(&i);
 
         seq_printf(m,
@@ -46,7 +39,6 @@ static int meminfo_proc_show(struct seq_file *m, void *v)
         arch_report_meminfo(m);
 
         return 0;
-#undef K
 }
 
 static int meminfo_proc_open(struct inode *inode, struct file *file)
@@ -63,7 +55,7 @@ static const struct file_operations meminfo_proc_fops = {
 
 static int __init memo_init(void)
 {
-	printk(KERN_INFO "201503393\n"); //Se loga en el log del sistema        
+	printk(KERN_INFO "201503393\n");       
 	proc_create("memo_201503393", 0, NULL, &meminfo_proc_fops);
         return 0;
 }
@@ -72,5 +64,6 @@ static void __exit memo_exit(void)
 {
    printk(KERN_INFO "Sistemas Operativos 1\n"); 
 }
+
 module_init(memo_init);
 module_exit(memo_exit);
