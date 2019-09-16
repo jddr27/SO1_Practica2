@@ -37,8 +37,8 @@ static int meminfo_proc_show(struct seq_file *m, void *v)
                 );
 
         arch_report_meminfo(m);
-#undef K
         return 0;
+#undef K
 }
 
 static int meminfo_proc_open(struct inode *inode, struct file *file)
