@@ -24,7 +24,7 @@ static int meminfo_proc_show(struct seq_file *m, void *v)
 {
         struct sysinfo i;
         si_meminfo(&i);
-
+#define K(x) ((x) << (PAGE_SHIFT - 10))
         seq_printf(m,
 		"201503393\nJose Daniel De Leon Ruiz\nDebian 10\n"
                 "MemTotal:       %8lu kB\n"
@@ -37,7 +37,7 @@ static int meminfo_proc_show(struct seq_file *m, void *v)
                 );
 
         arch_report_meminfo(m);
-
+#undef K
         return 0;
 }
 
